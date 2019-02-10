@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from '../logo.svg';
 import './App.css';
 import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux'
+import { handleInitialData } from '../actions/shared'
+import Dashboard from './Dashboard'
 
 class App extends Component {
+  componentDidMount() {
+    this.props.dispatch(handleInitialData())
+  }
+
   render() {
     return (
       <div className="App">
@@ -27,10 +34,19 @@ class App extends Component {
             </select>
             <Button variant="contained" color="primary">Sign in</Button>
           </form>
+          {this.props.loading === true
+            ? null
+            : <Dashboard />}
         </main>
       </div>
     );
   }
 }
 
-export default App;
+function mapStateToProps ({ authedUser }) {
+  return {
+    loading: authedUser === null
+  }
+}
+
+export default connect(mapStateToProps)(App)
