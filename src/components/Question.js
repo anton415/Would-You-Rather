@@ -4,7 +4,14 @@ import { formatQuestion } from '../utils/helpers'
 
 class Question extends Component {
   render() {
+    const { question } = this.props
+
+    if (question === null) {
+      return <p>This Question doesn't existed</p>
+    }
+
     console.log(this.props)
+
     return (
       <div className='question'>
 
@@ -18,7 +25,9 @@ function mapStateToProps ({authedUser, users, questions}, { id }) {
 
   return {
     authedUser,
-    question: formatQuestion(question, users[question.author], authedUser)
+    question: question
+      ? formatQuestion(question, users[question.author], authedUser)
+      : null
   }
 }
 
