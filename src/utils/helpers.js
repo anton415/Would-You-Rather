@@ -1,17 +1,17 @@
 export function formatQuestion (question, author, authedUser) {
-  const { id, optionOneText, optionTwoText, timestamp } = question
+  const { id, optionOne, optionTwo, timestamp } = question
 
   return {
     id,
     timestamp,
     author,
     optionOne: {
-      votes: [],
-      text: optionOneText,
+      votes: optionOne.votes,
+      text: optionOne.text,
     },
     optionTwo: {
-      votes: [],
-      text: optionTwoText,
+      votes: optionTwo.votes,
+      text: optionTwo.text,
     }
   }
 }
