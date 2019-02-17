@@ -10,11 +10,19 @@ class Question extends Component {
       return <p>This Question doesn't existed</p>
     }
 
-    console.log(this.props)
+    const {
+      id, author, timestamp, optionOne, optionTwo
+    } = question
+
+    // console.log(this.props)
 
     return (
       <div className='question'>
-
+        <img
+          src={author}
+          alt={`Avatar of ${author}`}
+          className='avatar'
+        />
       </div>
     )
   }
