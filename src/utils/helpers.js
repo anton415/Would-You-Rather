@@ -15,3 +15,15 @@ export function formatQuestion (question, author, authedUser) {
     }
   }
 }
+
+export function formatUser (user, question) {
+  const { id, name, avatarURL, answers, questions } = user
+
+  return {
+    id,
+    name,
+    avatarURL,
+    answers,
+    questions
+  }
+}
