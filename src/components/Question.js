@@ -25,18 +25,22 @@ class Question extends Component {
 
     return (
       <div className='question'>
-        <p>{myUser.name}</p>
-        <img
-          src={myUser.avatarURL}
-          alt={`Avatar of ${author}`}
-          className='avatar'
-        />
-        <div>
+        <div className='question_header'>
+          <p>{myUser.name} asks:</p>
+        </div>
+        <div className='question_component'>
+          <img
+            src={myUser.avatarURL}
+            alt={`Avatar of ${author}`}
+            className='avatar'
+          />
+        </div>
+        <div className='question_component'>
           <p>Would you rather</p>
           <div>
             {optionOne.text} or {optionTwo.text}
           </div>
-          <button>View Poll</button>
+          <button className='button'>View Poll</button>
         </div>
       </div>
     )
