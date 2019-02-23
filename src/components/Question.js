@@ -4,6 +4,11 @@ import { formatQuestion } from '../utils/helpers'
 import './Question.css';
 
 class Question extends Component {
+  viewPoll = (e, id) => {
+    e.preventDefault()
+    // todo: Redirect to ViewPollPage.js
+  }
+
   render() {
     const { question } = this.props
     const { userID } = this.props
@@ -14,7 +19,7 @@ class Question extends Component {
     }
 
     const {
-      id, author, timestamp, optionOne, optionTwo
+      id, author, optionOne, optionTwo
     } = question
 
     let myUser = ''
@@ -24,6 +29,7 @@ class Question extends Component {
 
 
     return (
+
       <div className='question'>
         <div className='question_header'>
           <p>{myUser.name} asks:</p>
@@ -40,7 +46,9 @@ class Question extends Component {
           <div>
             {optionOne.text} or {optionTwo.text}
           </div>
-          <button className='button'>View Poll</button>
+          <button className='button' onClick={(e) => this.viewPoll(e, question.id)}>
+            View Poll
+          </button>
         </div>
       </div>
     )
