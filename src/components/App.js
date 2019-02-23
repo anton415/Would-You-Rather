@@ -28,10 +28,14 @@ class App extends Component {
 
           <form>
             <p>Sign in</p>
+            <div className="select">
             <select>
+              <option value="">Select user</option>
               <option value="tyler">Tyler</option>
               <option value="anton">Anton</option>
             </select>
+            </div>
+
             <Button variant="contained" color="primary">Sign in</Button>
           </form>
           {this.props.loading === true
