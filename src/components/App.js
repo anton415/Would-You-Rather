@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import Dashboard from './Dashboard'
+import LoadingBar from 'react-redux-loading'
 
 class App extends Component {
   componentDidMount() {
@@ -14,6 +15,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <LoadingBar />
         <header className="App-header">
           Home
           New Question
@@ -28,12 +30,17 @@ class App extends Component {
 
           <form>
             <p>Sign in</p>
+            <div className="select">
             <select>
+              <option value="">Select user</option>
               <option value="tyler">Tyler</option>
               <option value="anton">Anton</option>
             </select>
+            </div>
+
             <Button variant="contained" color="primary">Sign in</Button>
           </form>
+
           {this.props.loading === true
             ? null
             : <Dashboard />}
