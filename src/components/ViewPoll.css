@@ -1,0 +1,17 @@
+header {
+  border-style: solid;
+}
+main {
+  display: flex;
+}
+
+.main-component {
+  border-style: solid;
+  height: 50%;
+  width: 50%;
+}
+
+.viewPoll {
+    border-style: solid;
+    margin: 30px;
+}

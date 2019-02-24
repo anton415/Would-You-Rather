@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatQuestion } from '../utils/helpers'
+import './ViewPoll.css';
 
 class ViewPoll extends Component {
   state = {
@@ -30,9 +31,23 @@ class ViewPoll extends Component {
   render() {
     return (
       <div className="viewPoll">
-        <h3>User asks:</h3>
-        <div>User img</div>
-        <p>Would you rather...</p>
+        <header>
+          <h3>User asks:</h3>
+        </header>
+        <main>
+          <div className='main-component' id='user-img'>User img</div>
+          <div className='main-component'>
+            <p>Would you rather...</p>
+            <form>
+              <input type='radio' name="option" value='optionOne'/>optionOne
+              <br />
+              <input type='radio' name="option" value='optionTwo'/>optionTwo
+              <br />
+              <button>Submit</button>
+            </form>
+          </div>
+
+        </main>
       </div>
     )
   }
