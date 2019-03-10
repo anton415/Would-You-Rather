@@ -1,8 +1,22 @@
-export const GET_USERS = 'GET_USERS'
+export const RECEIVE_USERS = 'RECEIVE_USERS'
+export const ADD_QUESTION_TO_USER = 'ADD_QUESTION_TO_USER'
 
-export function getUsers (users) {
+export function recieveUsers (users) {
   return {
-    type: GET_USERS,
+    type: RECEIVE_USERS,
     users
+  }
+}
+
+function addQuestionToUser(question) {
+  return {
+    type: ADD_QUESTION_TO_USER,
+    question
+  }
+}
+
+export function handleAddQuestionToUser(info) {
+  return (dispatch) => {
+    dispatch(addQuestionToUser(info))
   }
 }
