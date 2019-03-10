@@ -1,5 +1,5 @@
 import { saveQuestionAnswer, saveQuestion } from "../utils/api"
-
+import { handleAddQuestionToUser, handleAddAnswerToUser } from '../actions/users'
 
 export const RECEIVE_QUESTIONS = 'GET_QUESTIONS'
 export const ADD_QUESTION = 'ADD_QUESTION'
@@ -28,6 +28,7 @@ export function handleAddQuestion(optionOneText, optionTwoText, author) {
     })
     .then((question) => {
       dispatch(addQuestion(question))
+      dispatch(handleAddQuestionToUser(question))
     })
   }
 }
@@ -50,6 +51,7 @@ export function handleAnswerQuestion(authedUser, questionId, answer) {
     })
     .then(({authedUser, questionId, answer}) => {
       dispatch(answerQuestion(authedUser, questionId, answer))
+      dispatch(handleAddAnswerToUser(authedUser, questionId, answer))
     })
   }
 }
