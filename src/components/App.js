@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './App.css';
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
-import Dashboard from './Dashboard'
 import LoadingBar from 'react-redux-loading'
-import ViewPoll from './ViewPoll'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import Login from './Login'
 
 class App extends Component {
   componentDidMount() {
@@ -14,19 +14,21 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <LoadingBar />
-        {this.props.loading === true
-          ? null
-          : <ViewPoll />}
+        <Router>
+          <Fragment>
+            <LoadingBar />
+            {this.props.loading === true ? null :
+              <div>
+                <Switch>
+                  <Route path='/' exact component={Login} />
+                </Switch>
+              </div>}
+          </Fragment>
+        </Router>
+
       </div>
     );
   }
 }
 
-function mapStateToProps ({ authedUser }) {
-  return {
-    loading: authedUser === null
-  }
-}
-
-export default connect(mapStateToProps)(App)
+export default connect()(App)
