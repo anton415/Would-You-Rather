@@ -2,7 +2,7 @@ import { RECEIVE_USERS, ADD_QUESTION_TO_USER, ADD_ANSWER_TO_USER } from '../acti
 
 export default function users (state = {}, action) {
   switch (action.type) {
-    case GET_USERS :
+    case RECEIVE_USERS :
       return {
         ...state,
         ...action.users
