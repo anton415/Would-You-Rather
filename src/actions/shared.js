@@ -16,8 +16,8 @@ export function handleInitialData () {
   }
 }
 
-export function authenticate(authedId) {
-  return(dispatch) => {
-    dispatch(setAuthedUser(authedId))
+export function authenticate (authedId ) {
+    return (dispatch) => {
+      dispatch(setAuthedUser(authedId))
+    }
   }
-}

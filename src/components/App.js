@@ -1,11 +1,15 @@
-import React, { Component, Fragment } from 'react';
-import './App.css';
+import React, { Component, Fragment} from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
-import LoadingBar from 'react-redux-loading'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import PageNotFound from './PageNotFound'
 import Login from './Login'
 import Home from './Home'
+import AddQuestion from './AddQuestion'
+import LeaderBoard from './LeaderBoard'
+import Question from './Question'
+import Result from './Result'
+import LoadingBar from 'react-redux-loading'
 
 class App extends Component {
   componentDidMount() {
@@ -14,23 +18,25 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className='app'>
         <Router>
           <Fragment>
             <LoadingBar />
             {this.props.loading === true ? null :
-              <div>
-                <Switch>
-                  <Route path='/' exact component={Login} />
-                  <Route path='/home' exact component={Home} />
-                </Switch>
-              </div>}
+            <Switch>
+              <Route path='/' exact component={Login} />
+              <Route path='/login/redirect/:id' exact component={Login} />
+              <Route path='/home' exact component={Home} />
+              <Route path='/questions/:id' exact component={Question} />
+              <Route path='/results/:id' exact component={Result} />
+              <Route path='/add' exact component={AddQuestion} />
+              <Route path='/leaderBoard' exact component={LeaderBoard} />
+              <Route component={PageNotFound} />
+            </Switch>}
           </Fragment>
         </Router>
-
       </div>
-    );
+    )
   }
 }
-
 export default connect()(App)

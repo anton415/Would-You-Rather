@@ -22,17 +22,17 @@ export function handleAddQuestionToUser(info) {
   }
 }
 
-function addAnswerToUser(authedUser, questionId, answer) {
+function addAnswerToUser(authedUser, qid, answer) {
   return {
     type: ADD_ANSWER_TO_USER,
     authedUser,
-    questionId,
+    qid,
     answer
   }
 }
 
-export function handleAddAnswerToUser(authedUser, questionId, answer) {
+export function handleAddAnswerToUser(authedUser, qid, answer) {
   return (dispatch) => {
-    dispatch(addAnswerToUser(authedUser, questionId, answer))
+    dispatch(addAnswerToUser(authedUser, qid, answer))
   }
 }

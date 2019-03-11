@@ -1,7 +1,7 @@
 import { RECEIVE_USERS, ADD_QUESTION_TO_USER, ADD_ANSWER_TO_USER } from '../actions/users'
 
 export default function users (state = {}, action) {
-  switch (action.type) {
+  switch(action.type) {
     case RECEIVE_USERS :
       return {
         ...state,
@@ -22,10 +22,11 @@ export default function users (state = {}, action) {
           ...state[action.authedUser],
           answers: {
             ...state[action.authedUser].answers,
-            [action.questionId]: action.answer
+            [action.qid]: action.answer
           }
         }
       }
+
     default :
       return state
   }

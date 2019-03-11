@@ -2,7 +2,7 @@ let users = {
   sarahedo: {
     id: 'sarahedo',
     name: 'Sarah Edo',
-    avatarURL: "https://tylermcginnis.com/would-you-rather/sarah.jpg",
+    avatarURL: 'https://tylermcginnis.com/would-you-rather/sarah.jpg',
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
       "6ni6ok3ym7mf1p33lnez": 'optionTwo',
@@ -14,17 +14,17 @@ let users = {
   tylermcginnis: {
     id: 'tylermcginnis',
     name: 'Tyler McGinnis',
-    avatarURL: "https://tylermcginnis.com/would-you-rather/tyler.jpg",
+    avatarURL: 'https://tylermcginnis.com/would-you-rather/tyler.jpg',
     answers: {
       "vthrdm985a262al8qx3do": 'optionOne',
       "xj352vofupe1dqz9emx13r": 'optionTwo',
     },
     questions: ['loxhs1bqm25b708cmbf3g', 'vthrdm985a262al8qx3do'],
   },
-  dan_abramov: {
-    id: 'dan_abramov',
+  danabramov: {
+    id: 'danabramov',
     name: 'Dan Abramov',
-    avatarURL: "https://tylermcginnis.com/would-you-rather/dan.jpg",
+    avatarURL: 'https://tylermcginnis.com/would-you-rather/dan.jpg',
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',
@@ -46,6 +46,19 @@ let questions = {
     optionTwo: {
       votes: [],
       text: 'have horrible long term memory'
+    }
+  },
+  "6ni6ok3ym7mf1p33lnez": {
+    id: '6ni6ok3ym7mf1p33lnez',
+    author: 'danabramov',
+    timestamp: 1468479767190,
+    optionOne: {
+      votes: [],
+      text: 'become a superhero',
+    },
+    optionTwo: {
+      votes: ['danabramov', 'sarahedo'],
+      text: 'become a supervillain'
     }
   },
   "am8ehyc8byjqgar0jgpub9": {
@@ -83,10 +96,23 @@ let questions = {
       text: 'find $50 yourself',
     },
     optionTwo: {
-      votes: ['johndoe'],
+      votes: ['danabramov'],
       text: 'have your best friend find $500'
     }
-  }
+  },
+  "xj352vofupe1dqz9emx13r": {
+    id: 'xj352vofupe1dqz9emx13r',
+    author: 'danabramov',
+    timestamp: 1493579767190,
+    optionOne: {
+      votes: ['johndoe'],
+      text: 'write JavaScript',
+    },
+    optionTwo: {
+      votes: ['tylermcginnis'],
+      text: 'write Swift'
+    }
+  },
 }
 
 function generateUID () {
@@ -170,7 +196,7 @@ export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
         }
       }
 
-      res()
+      res({ authedUser, qid, answer })
     }, 500)
   })
 }

@@ -1,53 +1,73 @@
 import React, { Component } from 'react'
+import Navigation from './Navigation'
+import PageNotFound from './PageNotFound'
 import { connect } from 'react-redux'
-import { formatQuestion } from '../utils/helpers'
-import './Question.css';
+import { handleAnswerQuestion } from '../actions/questions'
 
 class Question extends Component {
-  viewPoll = (e, id) => {
-    e.preventDefault()
-    // todo: Redirect to ViewPollPage.js
+  componentDidMount() {
+    if(this.props.authedUser === null) {
+      this.props.history.push(`/login/redirect/${this.props.match.params.id}`)
+    }
+  }
+
+  state = {
+    option: '',
+    submitError: false
+  }
+
+  handleRadioOptionChange = (value) => {
+    this.setState({
+      option: value,
+      submitError: false
+    })
+  }
+
+  handleSubmit = () => {
+    const { option } = this.state
+    if(option === '') {
+      this.setState({
+        submitError: true
+      })
+    }
+
+    this.props.dispatch(handleAnswerQuestion( this.props.authedUser, this.props.match.params.id, option ))
+    this.props.history.push(`/results/${this.props.match.params.id}`)
   }
 
   render() {
-    const { question } = this.props
-    const { userID } = this.props
-    const { users } = this.props
+    const { question, author } = this.props
+    const { submitError } = this.state
 
-    if (question === null) {
-      return <p>This Question doesn't existed</p>
+    if(question === undefined) {
+      return(<PageNotFound />)
     }
-
-    const {
-      id, author, optionOne, optionTwo
-    } = question
-
-    let myUser = ''
-    if (typeof users[userID] !== 'undefined') {
-      myUser =  users[userID]
-    }
-
 
     return (
-
       <div className='question'>
-        <div className='question_header'>
-          <p>{myUser.name} asks:</p>
-        </div>
-        <div className='question_component'>
-          <img
-            src={myUser.avatarURL}
-            alt={`Avatar of ${author}`}
-            className='avatar'
-          />
-        </div>
-        <div className='question_component'>
-          <p>Would you rather</p>
+        <Navigation />
+        <div>
+          {submitError &&
+            <div>
+              You have to select an answer
+            </div>
+          }
+          {author &&
           <div>
-            {optionOne.text} or {optionTwo.text}
-          </div>
-          <button className='button' onClick={(e) => this.viewPoll(e, question.id)}>
-            View Poll
+            <img src={author.avatarURL} alt='avatar'/>
+            <h3>
+              {author.name} asks:
+            </h3>
+          </div>}
+          <p>Would you rather?</p>
+          {question &&
+          <form action=''>
+            <input type="radio" name="answer" value="optionOne" onChange={(e) => this.handleRadioOptionChange(e.target.value)} /> {question.optionOne.text}
+            <span>Or</span>
+            <input type="radio" name="answer" value="optionTwo" onChange={(e) => this.handleRadioOptionChange(e.target.value)} /> {question.optionTwo.text}
+          </form>}
+          <button onClick={this.handleSubmit}>
+            Submit
           </button>
         </div>
       </div>
@@ -55,17 +75,18 @@ class Question extends Component {
   }
 }
 
-function mapStateToProps ({authedUser, users, questions}, { id }) {
-  const question = questions[id]
-  const userID = questions[id].author
-
+function mapStateToProps({authedUser, questions, users}, props) {
+  const { id } = props.match.params
   return {
-    authedUser,
-    question: question
-      ? formatQuestion(question, users[question.author], authedUser)
-      : null,
-    userID,
-    users
+    question: questions
+              ? questions[id]
+              : null,
+    author: users && questions[id]
+              ? users[questions[id].author]
+              : null,
+    authedUser : authedUser
+                  ? authedUser
+                  : null
   }
 }
 
