@@ -29,7 +29,7 @@ class Result extends Component {
         return <PageNotFound />
       }
       return (
-        <div>
+        <div className='result'>
           <Navigation />
           {question &&
           <div>

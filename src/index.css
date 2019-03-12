@@ -1,3 +1,49 @@
+/* For all content */
 img {
-  width: 100px
+  border-radius: 50%;
+  width: 100px;
+}
+
+/* For login page */
+.login {
+  text-align: center;
+}
+
+/* For navigation */
+.navigation {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+.navigation-buttons {
+  align-items: center;
+  justify-content: center;
+}
+
+/* For home page */
+.home {
+  text-align: center;
+}
+
+/* For question page */
+.question {
+  text-align: center;
+}
+
+/* For result page */
+.result {
+  text-align: center;
+}
+
+/* For leader board page */
+.leaderBoard {
+  text-align: center;
+}
+
+/* For add question page */
+.addquestions {
+  text-align: center;
 }

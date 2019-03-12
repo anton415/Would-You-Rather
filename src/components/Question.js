@@ -63,7 +63,7 @@ class Question extends Component {
           {question &&
           <form action=''>
             <input type="radio" name="answer" value="optionOne" onChange={(e) => this.handleRadioOptionChange(e.target.value)} /> {question.optionOne.text}
-            <span>Or</span>
+            <div>Or</div>
             <input type="radio" name="answer" value="optionTwo" onChange={(e) => this.handleRadioOptionChange(e.target.value)} /> {question.optionTwo.text}
           </form>}
           <button onClick={this.handleSubmit}>

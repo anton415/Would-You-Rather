@@ -53,11 +53,12 @@ class AddQuestion extends Component {
             <p>Would you rather...</p>
             {optionsIncomplete &&
             <p>
-              <small className="pink-text">Please fill options one & two</small>
+              Please fill options one and two
             </p>}
             <input type="text" placeholder="Enter option one text here" onChange={(e) => this.handleOptionOneChange(e.target.value)}/>
-            <span>Or</span>
+            <div>Or</div>
             <input type="text" placeholder="Enter option two text here" onChange={(e) => this.handleOptionTwoChange(e.target.value)}/>
+            <br />
             <button onClick={this.handleAddQuestionClick}>
               Add Question
             </button>

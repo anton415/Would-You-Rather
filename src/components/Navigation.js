@@ -17,14 +17,14 @@ class Navigation extends Component {
     const { avatar, name } = this.props
     return (
       <div className='navigation'>
-        <div>
+        <div className='user-info'>
           <img src={avatar} alt='avatar'/>
           <p>Hello, {name}</p>
+        </div>
+        <div className='navigation-buttons'>
           <button onClick={this.handleLogout}>
             Logout
           </button>
-        </div>
-        <div>
           <NavLink exact to='/home'>
             <button>Home</button>
           </NavLink>
