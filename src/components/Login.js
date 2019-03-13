@@ -26,10 +26,14 @@ class Login extends Component {
     if(this.state.user !== '') {
       this.props.dispatch(authenticate(this.state.user))
 
+      console.log('this.props.match.params.id', this.props.match.params.id);
+
       if(this.props.match.params.id === 'add') {
         this.props.history.push('/add')
       } else if (this.props.match.params.id === 'leaderBoard') {
         this.props.history.push('/leaderboard')
+      } else if (this.props.match.params.id) {
+        this.props.history.push(`/questions/${this.props.match.params.id }`)
       } else {
         this.props.history.push('/home')
       }
