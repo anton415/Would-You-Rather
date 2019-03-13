@@ -1,3 +1,14 @@
+#Instructions for installing and launching the project.
+* Clone project from GitHub
+`git clone https://github.com/anton415/would-you-rather.git`
+* Go to Project
+`cd would-you-rather`
+* Install dependency
+`yarn install`
+* Run Project
+`yarn start`
+* Have fun :)
+
 # Would You Rather Project
 
 This is the starter code for the final assessment project for Udacity's React & Redux course.
