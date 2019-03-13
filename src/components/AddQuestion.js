@@ -4,6 +4,12 @@ import Navigation from './Navigation'
 import { handleAddQuestion } from '../actions/questions'
 
 class AddQuestion extends Component {
+  componentDidMount() {
+    if(this.props.authedUser === null) {
+      this.props.history.push(`/login/redirect${this.props.match.path}`)
+    }
+  }
+
   state = {
     optionOne: '',
     optionTwo: '',
@@ -68,10 +74,13 @@ class AddQuestion extends Component {
     }
   }
 
-function mapStateToProps ({ authedUser, questions }) {
+function mapStateToProps ({ authedUser, questions }, props) {
+  const { path } = props.match.path
+
   return {
     authedUser,
-    questions
+    questions,
+    path
   }
 }
 

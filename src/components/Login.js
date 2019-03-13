@@ -25,9 +25,15 @@ class Login extends Component {
   handleClick = ()  => {
     if(this.state.user !== '') {
       this.props.dispatch(authenticate(this.state.user))
-      this.props.match.params.id
-        ? this.props.history.push(`/questions/${this.props.match.params.id }`)
-        : this.props.history.push('/home')
+
+      if(this.props.match.params.id === 'add') {
+        this.props.history.push('/add')
+      } else if (this.props.match.params.id === 'leaderBoard') {
+        this.props.history.push('/leaderboard')
+      } else {
+        this.props.history.push('/home')
+      }
+
     } else {
       this.setState({
         login: true

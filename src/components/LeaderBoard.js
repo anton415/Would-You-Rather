@@ -3,6 +3,11 @@ import Navigation from './Navigation'
 import { connect } from 'react-redux'
 
 class LeaderBoard extends Component {
+  componentDidMount() {
+    if(this.props.authedUser === null) {
+      this.props.history.push(`/login/redirect${this.props.match.path}`)
+    }
+  }
   render() {
     const { users } = this.props
 
@@ -32,7 +37,8 @@ class LeaderBoard extends Component {
     }
   }
 
-function mapStateToProps({ users }) {
+function mapStateToProps({ authedUser, users }, props) {
+  const { path } = props.match.path
   var userArray = []
   Object.entries(users).forEach(
     ([key, value]) => {
@@ -49,7 +55,9 @@ function mapStateToProps({ users }) {
     }
   )
   return {
-    users: userArray.sort((a, b) => b.score - a.score)
+    authedUser,
+    users: userArray.sort((a, b) => b.score - a.score),
+    path
   }
 }
 

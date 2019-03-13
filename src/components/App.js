@@ -25,12 +25,13 @@ class App extends Component {
             {this.props.loading === true ? null :
             <Switch>
               <Route path='/' exact component={Login} />
-              <Route path='/login/redirect/:id' exact component={Login} />
-              <Route path='/home' exact component={Home} />
-              <Route path='/questions/:id' exact component={Question} />
-              <Route path='/results/:id' exact component={Result} />
-              <Route path='/add' exact component={AddQuestion} />
-              <Route path='/leaderBoard' exact component={LeaderBoard} />
+              <Route path='/login/redirect/:id' component={Login} />
+              <Route path='/login/redirect/:path' component={Login} />
+              <Route path='/home' component={Home} />
+              <Route path='/questions/:id' component={Question} />
+              <Route path='/results/:id' component={Result} />
+              <Route path='/add' component={AddQuestion} />
+              <Route path='/leaderBoard' component={LeaderBoard} />
               <Route component={PageNotFound} />
             </Switch>}
           </Fragment>
@@ -39,4 +40,5 @@ class App extends Component {
     )
   }
 }
+
 export default connect()(App)
